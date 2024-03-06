@@ -100,6 +100,22 @@
       </div>
     </main>
 
+    <dialog>
+      <section class="add-edit-modal">
+        <h3>Title</h3>
+
+        <form onsubmit="app.onSaveLocation(event)">
+          <label for="name-input">Name</label>
+          <input type="text" id="name-input" />
+
+          <label for="rate-input">Rate</label>
+          <input type="number" id="rate-input" min="1" max="5" />
+
+          <button>Save</button>
+        </form>
+      </section>
+    </dialog>
+
     <pre class="debug" hidden></pre>
     <div class="user-msg"></div>
     <script type="module" src="js/app.controller.js"></script>

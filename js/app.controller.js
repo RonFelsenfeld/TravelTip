@@ -19,6 +19,7 @@ window.app = {
   onShareLoc,
   onSetSortBy,
   onSetFilterBy,
+  onSaveLocation,
 }
 
 function onInit() {
@@ -240,6 +241,10 @@ function onShareLoc() {
     url,
   }
   navigator.share(data)
+}
+
+function onSaveLocation(ev) {
+  ev.preventDefault()
 }
 
 function flashMsg(msg) {
