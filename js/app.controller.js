@@ -81,7 +81,9 @@ function renderLocs(locs) {
 }
 
 function onRemoveLoc(locId) {
-  locService
+  var isUserSure = confirm('Are you sure?')
+  if(isUserSure){
+    locService
     .remove(locId)
     .then(() => {
       flashMsg('Location removed')
@@ -92,6 +94,7 @@ function onRemoveLoc(locId) {
       console.error('OOPs:', err)
       flashMsg('Cannot remove location')
     })
+  } else return
 }
 
 function onSearchAddress(ev) {
