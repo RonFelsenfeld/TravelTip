@@ -100,16 +100,29 @@
       </div>
     </main>
 
-    <dialog>
+    <dialog class="add-edit-dialog">
       <section class="add-edit-modal">
         <h3>Title</h3>
 
-        <form onsubmit="app.onSaveLocation(event)">
+        <form onsubmit="app.onSaveLoc(this, event)">
+          <button
+            type="button"
+            class="btn-close-dialog"
+            onclick="app.onCloseModal()"
+          >
+            X
+          </button>
           <label for="name-input">Name</label>
-          <input type="text" id="name-input" />
+          <input type="text" id="name-input" class="name-input" />
 
           <label for="rate-input">Rate</label>
-          <input type="number" id="rate-input" min="1" max="5" />
+          <input
+            type="number"
+            id="rate-input"
+            class="rate-input"
+            min="1"
+            max="5"
+          />
 
           <button>Save</button>
         </form>

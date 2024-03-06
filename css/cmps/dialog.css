@@ -1,6 +1,12 @@
 dialog {
+  position: relative;
   padding: 20px;
   background-color: #7af7dc;
+}
+
+dialog .btn-close-dialog {
+  position: absolute;
+  inset: 0 0 auto auto;
 }
 
 .add-edit-modal {
