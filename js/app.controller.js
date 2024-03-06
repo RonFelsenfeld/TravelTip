@@ -2,7 +2,10 @@ import { utilService } from './services/util.service.js'
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+let gUserPos
+
 window.onload = onInit
+window.gUserPos = gUserPos
 
 // To make things easier in this project structure
 // functions that are called from DOM are defined on a global app object
@@ -38,14 +41,21 @@ function renderLocs(locs) {
 
   var strHTML = locs
     .map(loc => {
+      const { lat, lng } = loc.geo
+      const locLatLng = { lat, lng }
+
       const className = loc.id === selectedLocId ? 'active' : ''
+      const distance = gUserPos
+        ? `${utilService.getDistance(gUserPos, locLatLng, 'K')}K`
+        : 'N/A'
+
       return `
         <li class="loc ${className}" data-id="${loc.id}">
             <h4>  
                 <span>${loc.name}</span>
                 <span title="${loc.rate} stars">${'★'.repeat(loc.rate)}</span>
-            </h4>
-            <p class="muted">
+                </h4>
+                <p class="muted">
                 Created: ${utilService.elapsedTime(loc.createdAt)}
                 ${
                   loc.createdAt !== loc.updatedAt
@@ -53,6 +63,7 @@ function renderLocs(locs) {
                     : ''
                 }
             </p>
+            <p class="distance">Distance: ${distance}</p>
             <div class="loc-btns">     
                <button title="Delete" onclick="app.onRemoveLoc('${
                  loc.id
@@ -147,6 +158,7 @@ function onPanToUserPos() {
   mapService
     .getUserPosition()
     .then(latLng => {
+      gUserPos = latLng
       mapService.panTo({ ...latLng, zoom: 15 })
       unDisplayLoc()
       loadAndRenderLocs()
