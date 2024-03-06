@@ -39,7 +39,6 @@ function lookupAddressGeo(geoOrAddress) {
   return fetch(url)
     .then(res => res.json())
     .then(res => {
-      // console.log('RES IS', res)
       if (!res.results.length) return new Error('Found nothing')
       res = res.results[0]
       const { formatted_address, geometry } = res
@@ -52,7 +51,7 @@ function lookupAddressGeo(geoOrAddress) {
         lng: geometry.location.lng,
         zoom: gMap.getZoom(),
       }
-      // console.log('GEO IS', geo)
+
       return geo
     })
 }
@@ -63,6 +62,7 @@ function addClickListener(cb) {
       lat: mapsMouseEvent.latLng.lat(),
       lng: mapsMouseEvent.latLng.lng(),
     }
+
     lookupAddressGeo(geo).then(cb)
   })
 }
