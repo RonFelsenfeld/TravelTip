@@ -1,3 +1,5 @@
+import { key } from '../api-key.js'
+
 export const mapService = {
   initMap,
   getUserPosition,
@@ -7,7 +9,7 @@ export const mapService = {
   addClickListener,
 }
 
-const API_KEY = 'AIzaSyBRVkXzBLhvXI7QvhMHd0dpG2u2X_R72no'
+const API_KEY = key.API_KEY
 var gMap
 var gMarker
 
