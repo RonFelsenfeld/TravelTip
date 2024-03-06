@@ -38,7 +38,9 @@ function query() {
   return storageService.query(DB_KEY).then(locs => {
     if (gFilterBy.txt) {
       const regex = new RegExp(gFilterBy.txt, 'i')
-      locs = locs.filter(loc => regex.test(loc.name) || regex.test(loc.geo.address))
+      locs = locs.filter(
+        loc => regex.test(loc.name) || regex.test(loc.geo.address)
+      )
     }
     if (gFilterBy.minRate) {
       locs = locs.filter(loc => loc.rate >= gFilterBy.minRate)
@@ -116,7 +118,8 @@ function getLocCountByUpdateMap() {
         else map.today++
         return map
       },
-       { today: 0, past: 0, never: 0 })
+      { today: 0, past: 0, never: 0 }
+    )
     locCountByUpdateMap.total = locs.length
     return locCountByUpdateMap
   })
