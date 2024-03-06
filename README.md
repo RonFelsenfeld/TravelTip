@@ -91,7 +91,7 @@ window.app = {
   onSetFilterBy,
   onSaveLoc,
   onCloseModal,
-  showLocModal,
+  onSaveLoc,
 }
 ```
 
