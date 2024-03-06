@@ -49,10 +49,12 @@ function query() {
       locs = locs.slice(startIdx, startIdx + PAGE_SIZE)
     }
 
-    if (gSortBy.rate !== undefined) {
+    if (gSortBy.rate) {
       locs.sort((p1, p2) => (p1.rate - p2.rate) * gSortBy.rate)
-    } else if (gSortBy.name !== undefined) {
+    } else if (gSortBy.name) {
       locs.sort((p1, p2) => p1.name.localeCompare(p2.name) * gSortBy.name)
+    } else if (gSortBy.creation) {
+      locs.sort((p1, p2) => (p1.createdAt - p2.createdAt) * gSortBy.creation)
     }
 
     return locs

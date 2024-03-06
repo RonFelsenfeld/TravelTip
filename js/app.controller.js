@@ -82,18 +82,18 @@ function renderLocs(locs) {
 
 function onRemoveLoc(locId) {
   var isUserSure = confirm('Are you sure?')
-  if(isUserSure){
+  if (isUserSure) {
     locService
-    .remove(locId)
-    .then(() => {
-      flashMsg('Location removed')
-      unDisplayLoc()
-      loadAndRenderLocs()
-    })
-    .catch(err => {
-      console.error('OOPs:', err)
-      flashMsg('Cannot remove location')
-    })
+      .remove(locId)
+      .then(() => {
+        flashMsg('Location removed')
+        unDisplayLoc()
+        loadAndRenderLocs()
+      })
+      .catch(err => {
+        console.error('OOPs:', err)
+        flashMsg('Cannot remove location')
+      })
   } else return
 }
 
